@@ -1,0 +1,1018 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+% set up sensible margins (same as for cssethesis)
+\usepackage[paper=a4paper,left=30mm,width=150mm,top=25mm,bottom=25mm]{geometry} 
+\usepackage{cite} % Use the natbib bibliography and citation package
+\usepackage{setspace} % This is used in the title page
+\usepackage{graphicx} % This is used to load the crest in the title page
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{color}
+\usepackage{textcomp}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{amssymb}
+\usepackage{cleveref} 
+\usepackage{epsfig}
+%\usepackage[ruled, vlined]{algorithm2e}
+\usepackage{epstopdf}
+\usepackage{subfigure}
+\usepackage{sectsty} 
+\usepackage{amsmath}
+\usepackage{qtree}
+\usepackage{multirow}
+\usepackage{lscape}
+%\usepackage{refcheck}
+%\usepackage[backref]{hyperref}
+%\usepackage{hyperref}
+%\usepackage{rotating}
+%\usepackage{comment}
+
+
+%\usepackage{enumerate}
+%\usepackage[shortlabels]{enumitem}
+
+\begin{document}
+
+
+%\begin{enumerate}[start=1,label={(\bfseries Q\arabic*):}]
+
+% Set up a title page
+\thispagestyle{empty} % no page number on very first page
+% Use roman numerals for page numbers initially
+%\renewcommand{\thepage}{\roman{page}}
+
+\begin{spacing}{1.5}
+\begin{center}
+
+{\LARGE \bfseries
+Political Stance Detection in Posts Across Online Social Networks}
+\medskip\\
+\textbf{ Report}
+\begin{center}
+submitted in partial fulfillment of\\ 
+the requirements for the award of the degree of\\
+\textbf{Bachelor of Technology}
+\medskip\\
+in\\
+\textbf{INFORMATION TECHNOLOGY}\\
+\textbf{BY}
+\medskip\\
+Priyam Bansal (01901032015)\\
+Zoya Khan (02001032015)\\
+Mansi Sharma (03201032015)\\
+\end{center}
+\begin{center}
+\textbf{Under the Guidance of}\\
+\end{center}
+
+\begin{center}
+\textbf{Mr. Rishabh Kaushal}\\
+Assistant Professor\\
+Department of Information Technology\\
+Indira Gandhi Delhi Technical University for Women
+\end{center}
+\vspace*{10mm}
+
+\includegraphics[height=5cm,width=5cm]{igdtuw_logo.jpg}
+
+{\LARGE \bfseries
+Indira Gandhi Delhi Technical University for Women\\
+Kashmere Gate, Delhi - 110006\medskip\\
+2015-2019
+}
+
+\end{center}
+\end{spacing}
+
+\newpage
+{\LARGE \bfseries CERTIFICATE}
+\pagenumbering{roman}
+\setcounter{page}{1}
+\addcontentsline{toc}{section}{CERTIFICATE}
+\vspace*{5mm}
+\medskip\\
+\begin{spacing}{1.5}
+This is to certify that the work presented in this B.Tech. Report titled \textbf{“Political Stance Detection in Posts Across Online Social Networks”} is an authentic record of our own work under the supervision of \textbf{Mr. Rishabh Kaushal, Assistant Professor}, Department of Information Technology. It is submitted in partial fulfillment of the requirements for the award of the \textbf{Bachelor of Technology in Information Technology} at Department of Information Technology, Indira Gandhi Delhi Technical University for Women.
+
+\vspace*{1.70cm}
+{\hspace*{\fill} {\textbf{PRIYAM BANSAL\\\hspace*{\fill}01901032015}}}
+
+\vspace*{0.05cm}
+{\hspace*{\fill} {\textbf{ZOYA KHAN\\\hspace*{\fill}02001032015}}}
+
+\vspace*{0.05cm}
+{\hspace*{\fill} {\textbf{MANSI SHARMA\\\hspace*{\fill}03201032015}}}
+
+\vspace*{1.25cm}
+{This is to certify that this work has been done under my supervision and guidance. It has not been submitted elsewhere either in part or full, for award of any other degree or diploma to the best of my knowledge and belief.}
+
+\vspace*{2.5cm}
+{\textbf{DATE:}\hspace*{\fill} {\textbf{Mr. Rishabh Kaushal\\\hspace*{\fill}Assistant Professor}}}
+\end{spacing}
+
+\newpage
+{\LARGE \bfseries ACKNOWLEDGMENT}
+\addcontentsline{toc}{section}{ACKNOWLEDGMENT}
+\vspace*{5mm}
+\medskip\\
+ \begin{spacing}{1.5}
+    We would like to express our special thanks of gratitude to our project supervisor, \textbf{Mr. Rishabh Kaushal}, Assistant Professor, Department of Information Technology, Indira Gandhi Delhi Technical University for Women. The objective and scope of this project was
+    formulated under his guidance and his willingness to
+    provide constant feedback to us on our work helped us to
+    improve and refine the project. \\
+    \\
+    Also we would like to thank our Head of Department, \textbf{Dr. Arun Sharma}, Department of Information Technology for giving us the golden opportunity to do this wonderful project in college. 
+    
+  \vspace*{2.5cm}
+{\hspace*{\fill} {\textbf{PRIYAM BANSAL\\\hspace*{\fill}01901032015}}}
+
+ \vspace*{0.1cm}
+{\hspace*{\fill} {\textbf{ZOYA KHAN\\\hspace*{\fill}02001032015}}}
+ 
+ 
+ \vspace*{0.1cm}
+{\hspace*{\fill} {\textbf{MANSI SHARMA\\\hspace*{\fill}03201032015}}}
+\end{spacing}
+
+\newpage
+{\LARGE \bfseries UNDERTAKING}
+\vspace*{5mm}
+\medskip\\
+ \begin{spacing}{1.5}
+   We declare that the work presented in this project titled \textbf{"Political Stance Detection in Posts Across Online Social Networks"}, submitted to the Department of Information Technology, Indira Gandhi Delhi Technical University for Women, Delhi, is our original work. \\
+    \\
+   The Mentor, Head of the Department, Faculty Coordinator or the department is not responsible for any kind of plagiarism in our project report. 
+    
+  \vspace*{2.5cm}
+  {\hspace*{\fill} {\textbf{PRIYAM BANSAL\\\hspace*{\fill}01901032015}}}
+
+ \vspace*{0.1cm}
+{\hspace*{\fill} {\textbf{ZOYA KHAN\\\hspace*{\fill}02001032015}}}
+ 
+ 
+ \vspace*{0.1cm}
+{\hspace*{\fill} {\textbf{MANSI SHARMA\\\hspace*{\fill}03201032015}}}
+ \end{spacing}
+
+
+\newpage
+{\LARGE \bfseries ABSTRACT}
+\addcontentsline{toc}{section}{ABSTRACT}
+\vspace*{5mm}
+\medskip\\
+%Our project aims at detecting the political stance of people living in and around New Delhi, India who tweet about their political opinions on Twitter. We concentrate our focus on the three major political parties that have been influential in the Delhi political scenario over the past few years namely, Aam Aadmi Party, Bhartiya Janta Party and Indian National Congress.
+%\medskip\\
+%We begin by initiating a  manual  collection  of  twitter users who live in and around Delhi and tweet about politically related issues. We identify 248 such users and with the help of Twitter's REST API we collect all (maximum 3,200) tweets from these users. 
+%\medskip\\
+%Using Natural Language Processing we build a political filter that filters out politically-related tweets among the whole tweet corpus that might have some out of context tweets too. A random sample of tweets of this data is then manually annotated in binary and multilevel classes according to their inclination towards or against any of the above identified political parties. 
+%\medskip\\
+%A Long Short Term Memory unit is trained for text classification to classify a given tweet as politically sensitive or not. This Long Short Term Memory model is trained using the random tweet dataset created in the initial phase and is used to predict the labels for new tweets.
+
+%------ADDED ABSTRACT PREPARED FOR SOCINFO-------
+
+Stance detection is the task of estimating a user's opinion about a particular issue, whether the user is `towards', `against' or `neutral' to the topic. In this study, we aim to predict the political stance of a user by using a sophisticated, state of the art Deep Learning autoencoder model. This is the first study that focuses on the complex Indian political scenario, where there are multiple political parties catering to the diverse populace.\medskip\\ 
+Our model takes a textual statement (tweet) as input and follows a two step classification for detecting stance. A first level classifier identifies whether the text is stance revealing or not. Only stance revealing tweets are then fed as input to the second level classifier which aims to correctly identify the political allegiance of the user on a six-point scale of being Pro or Anti of the three major political parties that influence the politics of Delhi, namely Aam Aadmi Party (AAP), Bharatiya Janata Party (BJP), and the Indian National Congress (INC).\medskip\\
+When compared with traditional models like word2vec and Google Pre-trained embeddings for learning word embeddings, our autoecoder based model performs strikingly better. Our implementation of the autoencoder is a sequence to sequence model having RNN based Encoder and Decoder models. The intermediate output of the autoencoder is fed to multiple classification algorithms, with Random Forest giving best accuracy.
+
+\newpage
+\tableofcontents
+\newpage
+
+\listoffigures
+\addcontentsline{toc}{section}{List of Figures} 
+\listoftables
+\addcontentsline{toc}{section}{List of Tables}
+
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{7}
+\section{INTRODUCTION}
+\hrule
+\vspace*{5mm}
+
+\subsection{Background}
+Online Social Networking websites such as Twitter, Facebook, Instagram,  LinkedIn, Reddit etc provide people a means to share their thoughts, connect with old friends and make new ones. The popularity of such platforms is increasing day by day, with people expressing their thoughts with all kinds of media be it personal photographs, the new age memes, articles, videos, polls and open letters, on all kinds of issues be it personal or social and with this there is a bulk of sensitive information revealed by them. 
+\medskip\\
+With the advent of social media, online social networking sites have become popular platforms for political discussions and debates. Both politicians and citizens alike have started to increasingly use online social media to convey and voice their political opinions and agendas. This expression of political views creates an opportunity for both politicians and citizens, with the former benefiting two-fold, firstly by being able to better understand the opinions of the people and secondly to be able to effectively disseminate political information in a targeted manner.
+
+In India, Twitter is now being used for a myriad of reasons like having  political discussions, for promoting political party agendas and even for election campaigning, it is hence the perfect platform to study and understand the political stance of users.
+\medskip\\
+One such information leak is encountered while expressing political views on social media platforms. While many users may not think that the political views they share are sensitive to privacy, we argue that even a single post relating to this subject can be used determine their political stance even though the users themselves have never revealed it explicitly on any of these platforms.
+\medskip\\
+Indian population is actively sharing their political views on online social networks. People are often seen expressing their views on new government policies and other latest developments and raising relevant political issues. Some people outwardly show their support to different political parties and/or leaders while some criticize or troll them. People also issue complaints and show their disappointment on these platforms and even the government bodies, politicians, senior leaders and parties communicate with general public here. When so much information pertaining to this domain is shared actively on online social networks, an individual may unintentionally give cues that can be used to determine his political allegiance.
+\medskip\\
+Twitter, a micro blogging website, is the most popular medium to express such thoughts among general public and political and entities alike. India stands third in largest Twitter using population of a country, with an average of 36 million users in 2018 so naturally political parties will reach out to the voters with the help of this powerful platform. Politicians can promote and present their point of view without being prey of media format limitation or being interrupted by journalists during press conference and they can post their presumptive political agenda, giving direct contact to the voters. Twitter has become indispensable in organizing political campaigns. 
+\medskip\\
+It allows like-minded voters and activists to share news and information such as campaign events in a convenient manner. Political parties or politicians can invite general public to participate in the discussions on issues of public interest. Parties may even try to manipulate people and make them swing towards them by creating a good sentiment for themselves with fake paid accounts and heavy trolling of the rival parties.
+\medskip\\
+These actions motivate general people to express their own thoughts and views on such matters and sometimes people get carried away and disclose private information unintentionally. This disclosure of political privacy can have serious repercussions like forestalling attempts to influence the voter by intimidation, blackmailing, and potential vote buying. This makes the problem important to solve.
+\medskip\\
+While sentiment detection has been an ever-present problem, stance detection has only recently started to gain research attention. Stance detection of Indian population poses an added set of concerns with numerous political parties, people with diverse backgrounds practicing different religions and expressing views in different languages.
+
+Previous works have explored the task of detecting sentiment of users and their tweets, this basically means detecting whether a particular piece of text is positive, negative or neutral. Nowadays, sentiment analysis is deemed as an especially trivial activity, one that requires no novel approach.
+
+In this report we aim to detect the political stance of a user by carefully analyzing their Twitter timelines. The scope of this study is limited to the Indian political scenario which offers a unique set of complexities and challenges which are prevalent due to the large number of national and regional political parties that cater to various diverse social groups that live in India.
+\medskip\\
+We attempt to do this in a novel two phase methodology. In this, a first level classifier aims at correctly identifying whether a given text is stance revealing or stance neutral. Here, by stance revealing we mean that the text is revealing the stance of that political user, i.e. we are able to correctly identify the political opinion expressed in the input text.
+A second level classifier then attempts to correctly identify this stance.
+We treat stance detection as a classification problem and use classical classification algorithms like Naive Bayes, Random Forest, Support Vector Machines and Decision Tree to compare the performance of our model with standard baselines like the word2vec model and word embeddings created using Google's Pre-trained three hundred length word embeddings.
+
+\newpage
+\subsection{Motivation for Report}
+
+In this digital age, the amount of data that is being generated and consumed is growing exponentially. With this rapid increase, there increases the need for security and privacy of this data.
+There are numerous laws in place already that are supposed to protect the privacy of a user in the online realm. These laws are supposed to ensure that privacy breaches of a user do not take place.\medskip\\
+In the global context, the EU GDPR is a ground breaking step taken by the European Union in 2018 towards protection of the data privacy and rights of its citizens.\medskip\\
+The European Union Global Data Protection Regulation governs the data privacy across all corporations processing data of residents of the European Union. In order to ensure that this regulation is followed with utmost care, the penalty of non conformance is set at 4\% of the global turnover of the corporation.\medskip\\
+The EU GDPR equips the users by providing them the following basic rights :
+\begin{enumerate}
+    \item Breach Notification :
+    The organization is required to inform its users of any possible breaches that might have occurred within 72 hours of the breach happening.
+    \item Right Access : This grants a user the right to ask the organization, how and where their data is being used.
+    \item Right to be Forgotten : This grants a user the right to completely delete their data from the organization.
+    \item Data Portability : This grants a user the right to ask the organization for all the data related to him/her in a readable format.
+\end{enumerate}
+In the Indian political scenario, a very recent issue is that of ballot selfies. There is a never ending debate on whether ballot selfies are a breach to privacy or not? In Figure \ref{fig:example1} people are shown holding their Voter ID cards. As can be seen, the text on most of the Voter IDs is legible and hence can be misused by people with malicious intentions. These people are essentially giving away their private information that can be misused in many ways.\medskip\\
+\begin{figure}[h]
+    \centering
+  \includegraphics[width=11.5cm]{ballot.jpg}
+  \caption{A Ballot Selfie}
+  \label{fig:example1}
+\end{figure}
+\newpage
+With the ever increasing usage of social media by the Indian population a large number of instances are seen on Twitter where people have lost their jobs/internships due to their tweets. One of the famous example is that of a Cisco new recruit complaining about the travel to work and her hatred for her new job. Figure \ref{fig:example2} shows a snapshot of the thread.\medskip\\
+\begin{figure}[h]
+  \includegraphics[width=\linewidth]{CiscoTweet.png}
+  \caption{Snapshot of a news article about how a girl lost her job}
+  \label{fig:example2}
+\end{figure}
+People express their thoughts on social media which can sometimes lead to privacy breaches. For example, people are not allowed to tell who are they going to vote for in a political election. They might not directly speak but sometimes their tweets can give a strong indication of favoritism towards a particular political party like in Figure \ref{fig:example3} or sometimes a person can be against one party which can be deduced from their tweets like in Figure \ref{fig:example4}.\medskip\\
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{pro.png}
+    \caption{A tweet with positive political stance}
+    \label{fig:example3}
+\end{figure}
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{anti.png}
+    \caption{A tweet with negative political stance}
+    \label{fig:example4}
+\end{figure}
+
+All this motivates us to analyze the tweets and their privacy aspect and use the predictive models to classify and predict the nature and trend in tweets related to politics.\medskip\\
+A vote in the ballot box cannot be obtained without an understanding of the voter who is casting it. Online Social Networks, particularly Twitter, empowers both elected officials and candidates by giving them a window into the hearts and minds of potential voters, allowing them to fully understand their constituents. Twitter can help gather information about voter intentions and opinions, meaning a candidate will be better positioned to understand how to craft their policies and platforms to meet the constituent needs.  This allows them to gauge both the political landscape and the viability of their candidacy.\medskip\\
+Tweets of political orientation can be used in a variety of ways, including:
+\begin{itemize}
+    \item \textit{Decision making:} Tweets are a powerful way politicians can ensure their decisions are aligned with the wants and needs of their constituents. By tweeting, one can ensure the voice of the voter is heard above the din of special interests groups and advisers. Relying on data directly coming from the public gives elected officials the confidence they need to ensure their decisions are fair and representative of the people they govern. For elected officials, making popular decisions that align with constituents’ best interests is a way to guarantee successful outcomes during subsequent elections.
+
+    \item \textit{Policy formation:} Trending hashtags and viral tweets take the pulse of the populace and helps organizations develop fair and just policies or even gauge reception to a particular stance. The information gathered here can help a candidate develop an appropriate platform, one that matches constituent needs and ensures a variety of interests are adequately represented. In this way, a candidate can rest assured their political positioning will bring the greatest good to the greatest number of people.
+    
+    \item \textit{Law making:} Political research on Twitter can help a candidate understand the level of support for a specific policy, and prevent endorsement of bills that are not representative of constituents. In addition, it can help identify areas where additional laws and regulations are needed.  This may help candidates establish themselves as unique players in the field by proposing legislative reforms to address critical issues that may have been previously overlooked.
+    
+    \item \textit{Public intent to support:} A temporal study on political stance on Twitter can capture the magnitude of public support and track changes over time in public opinion.  
+    \item \textit{Identifying concentrations of political supporters:} Analyzing political tweets can also be used to give candidates a better understanding of the geographic dispersion of their supporters. This information can be used to schedule appearances, organize fundraisers, and ensure one’s candidacy is announced in a geographic area that is most conducive to creating “buzz” or excitement about the candidacy.
+    
+    \item \textit{Identifying the strengths and weaknesses of opponents:} To defeat your opponents, you must first understand them. Tweets about opponent parties can help understand their strengths and weaknesses. By understanding the areas in which your opponents excel, parties can avoid any direct confrontations that would play to their advantage. Furthermore, they can identify which strengths should be emphasized relative to your competitors. Ultimately, this can give them a strategic advantage by contrasting the areas in which they excel to the areas in which their opponent is weak.
+    
+    \item \textit{Refining communications for marketing a candidate’s personal attributes, beliefs, policies, and political vision:} A better awareness of the characteristics of constituents positions allows a candidate to understand how to emphasize their own strengths. This type of information in invaluable when developing a candidate’s image or understanding what characteristics to emphasize during a campaign.  Furthermore, political research can help identify or redress any misconceptions constituents may have about a candidate and give that candidate an understanding of which attributes should be emphasized during advertising campaigns.
+
+\end{itemize}
+
+
+In this study we aim at detecting the political stance of users living in and around the National Capital of Territory (NCT) of Delhi, India. We focus our interest on three major political parties like the Aam Aadmi Party (AAP), Bhartiya Janata Party (BJP) and the Indian National Congress (INC) that have played a crucial role in shaping the political scenario of Delhi and are hence the primary centre of our interest.
+Unlike bi-partisan democracies like the USA, India's polity is much more complex owing to the prevalence of many political parties catering to the diversities in India. This is the first study that focuses on the complex Indian political scenario, where there are numerous national as well as regional political parties.\medskip\\
+\textit{Stance detection is the task of detecting a user’s opinion. It aims at understanding the sentiment of a given text and understanding if it is in favour (positive), is against (negative) or is neutral towards a given proposition or target. This target may be a person, an organization, a government policy, a movement, a product, etc.}\medskip\\
+In this paper we present a novel, two-part, semi supervised learning methodology to detect the political stance of users based on their online tweeting behaviour. In the first phase we establish a clear distinction between tweets that are stance revealing and tweets which are stance neutral, in the second phase we further drill down and detect the stance of users living in and around the NCT of Delhi by using an LSTM based autoencoder to create intermediate representations of the data and feeding them to classification algorithms to detect the political stance of the users. We detect stance in terms of six labels namely, Pro-AAP, Pro-BJP, Pro-INC, Anti-AAP, Anti-BJP and Anti-INC.\medskip\\
+The task of stance detection of the Indian population poses an added set of complexities with people with diverse backgrounds expressing views in different languages like English, Hindi, Hinglish and even in regional Indian languages. We use Google's Transaltion API to convert all our codemixed and transliterated tweets into English text and then feed them into our proposed model.\medskip\\
+Detecting stance in a political environment can be leveraged by different political parties to identify their target audience, re-calibrate their strategies and tailor their political manifestos accordingly.
+\newpage
+\subsection{Report Outline}
+
+%The first phase is the data collection phase in which twitter users residing in and around Delhi/NCR who frequently tweet related to BJP, AAP or Congress are collected via the Twitter API. Tags are manually given based on whether they are in favour, against or undeterministic in their inclination towards a political party. 
+%\medskip\\
+%Tweets are collected of these users and stored in MongoDB which this stores JSON data. 
+%Further, using natural language based political filter is used where we have created a dictionary of words which contains only political related words which are matched against the words in the tweet to extract only the political tweets.\\
+%The script uses Snowball Stemmer to effectively carry out this process.\\
+%Stop words and punctuation are deliberately removed as they give no new information and so that they don't divert us from the main problem.
+%Also, we randomly selected 50 tweets per person for further analysis.
+%\medskip\\
+%The tweets are then manually annotated into two classes. The first class defines whether a tweet indicates political inclination or not.\\
+%The Second class classifies the politically inclined tweets into one of the six following classes: Pro - AAP, Pro - BJP, Pro - Congress, Anti - AAP, Anti - BJP, Anti - Congress.
+%\medskip\\
+%Next, classification of the binary class is done using Recurrent Neural Networks. Basically Long Short Term Memory units are used which are a special type of Recurrent Neural Network. These Recurrent Neural Networks have the specialized ability to retain past information and give the output accordingly. It can remember relevant information for a long duration and is therefore our choice as a classifier.
+%\medskip\\
+%The accuracy of our Long Short Term Memory unit is 71.7\% on our dataset. Various charts are included in the report for comparison done between accuracies of varying datasets, parameters etc.
+%\medskip\\
+%This work is to be extended by improving the accuracy obtained by using different parameters in RNN, by increasing the size of the dataset and by using Word2Vec for better vectorization of words.\\
+%Also, Integration of Hindi Language tweets and classification of the multi-class (1-6) is to be done.
+
+%--------ADDED IC2S2 ABSTRACT--------
+
+The outline of this report explores the general flow of thought of how we have proposed a deep learning based autoencoder model to detect the political stance of users living in and around the National Capital Territory of Delhi, India. \medskip\\
+Many Online Social Media (OSM) platforms in general and Twitter in particular, have become popular online avenues for political discourse. Politicians and citizens are both active on these platforms and therefore, the problem of understanding people's opinions has become very crucial. \medskip\\
+Prior works \cite{lai2016friends,johnson2016identifying} refer this problem as \textit{stance detection} where the goal is to detect user's opinion about a particular issue. This is the first study that focuses on complex Indian political scenario, where there are numerous political parties. Detecting stance of online users would provide very useful information to political parties, using which they can re-calibrate their political strategies.\medskip\\
+We collect tweets related to political parties in the national capital region of Delhi in India, the largest democracy in the world. Unlike bi-partisan democracies like the USA, India's polity is more complex owing to the prevalence of many political parties catering to the diversities in India. For our data collection, we focus on three parties namely, Aam Aadmi Party (AAP), Bhartiya Janta Party (BJP) and the Indian National Congress (INC).\medskip\\
+We search for the target users by tweets which contain certain hashtags like - \#BJP, \#AAP, \#INC, \#politics, \#elections  etc. to identify users who actively tweet about politics and then collected tweets from their timeline to get 3,76,932 tweets. To create ground truth, we manually annotate tweets at two levels. At \textit{first level}, we provide a binary label (0 or 1) depending upon whether the tweet is stance neutral or stance revealing. At \textit{second level}, we give six labels from 1 to 6, indicating Pro-AAP, Pro-BJP, Pro-INC, Anti-AAP, Anti-BJP \& Anti-INC, respectively.\medskip\\
+The annotations were done over a two month period by strictly abiding to a set of annotation guidelines which were formulated for this purpose. We follow a two-step methodology based on deep learning. 
+\begin{itemize}
+    \item In \textit{first step}, the goal is to detect tweets that are stance revealing. 
+    \item In \textit{second step}, the goal is to take stance revealing tweet as input and identify the exact stance made in the tweet in terms of three political parties considered in the study. 
+\end{itemize}
+We propose to solve each step in two phases. In first phase, we aim to learn effective representations of user generated information (tweet). In second phase, we pass the learned feature vectors as input to conventional classification algorithms namely Random Forest (RF) , Decision Tree, Naive Bayes and SVM.\medskip\\
+For effective representation learning of first phase, we employ a deep neural network based autoencoder inspired by Sutskever et al. \cite{sutskever2014sequence}. \medskip\\
+Here we implement an autoencoder which is an unsupervised learning algorithm, used for compressing high dimensional input data to lower dimensions in order to learn a more compact and efficient representation of the input. It then attempts to reconstruct the initial input given this intermediate representation.\medskip\\
+\newpage
+We compare with autoencoder based approach with two baselines.
+\begin{enumerate}
+    \item Word2vec (w2v) Model \cite{mikolov2013efficient}: It is a neural network based model, trained on the vocabulary of the input dataset to generate word vectors. To represent phrase (tweet) level vectors, we take the mean of word vectors as suggested by Mikolov et. al. \cite{mikolov2013distributed}. 
+    \medskip\\
+    \item Google Embedding: It is Google's Pre-trained word embeddings created by Mikolov et. al. \cite{mikolov2013distributed} and trained on the Google news data. 
+\end{enumerate}
+
+
+\newpage
+    
+\section{PROBLEM STATEMENT}
+\hrule
+\vspace*{5mm}
+\textit{Political Stance Detection in Posts Across Online Social Networks.}\medskip\\
+Online Social media platform in focus : Twitter\\
+Aim : To extract tweets related to \textit{political views} and to determine and predict the political inclinations of the tweeters living in and around New Delhi, India.
+\medskip\\
+%------------UPDATED THE PROBLEM STATEMENT-------------
+The project begins with manual identification of 248 Twitter users and then collection of all (maximum 3,200) tweets of these users. We use Natural Language Processing to filter out the tweets and select only the ones related to politics. A random sample of this data is then manually annotated in binary and multi-level classes according to the users inclination towards or against the aforementioned three political parties namely, Aam Aadmi Party (AAP), Bhartiya Janata Party (BJP) and Indian National Congress (INC).\\
+\medskip\\
+A autoencoder is built to learn tweet representations which are then fed to 4 classification models - Random Forest, Decision Tree, Naive Bayes and Support Vector Machine and compare their performance on two levels i.e. classification of a tweet into stance-revealing or not and another classification model to detect the stance of the tweet.
+
+\newpage
+\section{LITERATURE REVIEW}
+\hrule
+\vspace*{5mm}
+Online Social Media are increasingly becoming popular as a field of study and analysis of data. People engage in various discussions or present their point of view about political scenario through the use of posts/tweets etc. Many a times this leads to unintentional revelation of their political stance. Many researchers have analysed the same and used this for various purposes.
+\medskip\\
+In early studies, various linguistic features such as morphology, syntactic, and discourse features, are used to predict the stance using data from congressional debates \cite{thomas2006get}\cite{bansal2008power} and online debates on public forums \cite{somasundaran2009recognizing}\cite{murakami2010support}\cite{anand2011cats}\cite{walker2012stance}.
+With the development of Online Social Media networks, stance detection on tweets has become popular\cite{johnson2016identifying}\cite{volkova2015inferring}\cite{lukasik2016hawkes}\cite{zubiaga2016stance}. Unlike debates, which contain automatically annotated data, annotated tweets for stance detection are limited, hence, unsupervised or semi-supervised methods for detecting stance on tweets like a weakly supervised approach to detect stance held by politicians proposed by Johnson et. al\cite{johnson2016identifying}, an LSTM based attention model for topical stance detection proposed by Dey et. al\cite{dey2018topical} and retweet-based label propagation algorithm proposed by Addawod et. al\cite{addawood2017stance}.
+%sometimes reveal a little too much about themselves through their posts which leads to breach of their privacy. Many researches are trying to determine the cause and the related outcome associated with these.
+\medskip\\
+%Diane et. al. \cite{gan2015social} give us a detailed explanation about how one can unintentionally provide information on social media like through posting of their location, which can be misused and hence reveal private information which can have considerable implications. This helps us to realize the importance of privacy and various dangers associated with posting content on social media.
+%\medskip\\
+%Mathias et. al \cite{humbert2013nowhere} provide an interesting study about our profiles on social media that they are always vulnerable to attack whatsoever privacy setting we might have in our accounts. They explain the procedure and algorithm an attacker might use to find information about a certain individual. This reveals that once we have a digital footprint, our information can be accessed by unauthorized people. 
+%\medskip\\
+%Huina et. al \cite{mao2011loose}  And Wang et. al \cite{wang2011regretted} form the basis for our motivation as here they give detailed findings on privacy leaks on twitter and the latter analyze regrettable tweets. Furthermore, tweets like the infamous Cisco incident where a new employee got fired due to her insensitive tweet added to the motivation.
+\medskip\\
+We are currently focusing our study on politically inclined tweets. Lu et. al \cite{zhou2016tweet} extract only English Tweets using the Twitter Streaming API using the ‘en’ filter which we implement in our python code for them same purpose. There are tweets which they exclude as they are of no significance like tweets deleted because of typos, rephrasing etc. which are of no relevance to their aim. Similarly we excluded some people from our study have used NLTK based approach by using snowball stemmer to try and extract only the politically related tweets.
+\medskip\\
+The main aim of the study of Lu et. al \cite{zhou2016tweet} is to analyze and identify deleted tweets and  from them get the regrettable ones. They use various classes for their analysis. Also, Huina et. al \cite{mao2011loose} filter data into classes like vacation tweets, drunk tweets etc. from these we get an idea to classify our tweets into various political classes for better analysis.
+\medskip\\
+Anna et. al \cite{stavrianou2014nlp} predict opinions in the political reference for tweets regarding politicians using natural language processing and machine learning techniques. They take two categories, one which depicts opinion polarity and the other which does not. It aims to improve by doing multi-class labelling. In the same vein we currently classify our tweets into 1 and 0 the former depicting political inclination of the tweet and the other does not and classify and predict the same using NLP techniques.
+\medskip\\
+Vishal et. al \cite{kharde2016sentiment} thoroughly describe and present the model and implementation of sentiment analysis of the tweets to classify them into positive or negative. They present two approaches – one is the machine learning and the other lexicon based approach. They describe sentiment analysis as a challenging task which involves natural language processing, machine learning techniques and web mining. They decompose this task into various tasks and explores each one of them. They provide detailed information about the 4 levels of sentiment analysis and finally produce results of the analysis using different algorithms. 
+\medskip\\
+Taking inspiration from Vishal et. al \cite{kharde2016sentiment}, Mohit et. al \cite{iyyer2014political}  give us a deep insight for classifying tweets in the political domain using Recurrent Neural networks. This forms the basis of our work. Mohit et. al \cite{iyyer2014political} list the properties of RNN which are very effective in detecting the bias in tweets and give us an idea behind the working of a standard RNN model. They list 2 options for initializing the parameters and demonstrates that choosing word2vec over random initialisation provides better results. They used the crowdflower platform their annotating their tweets into either liberal or conservative. In our work we do manual annotation of tweets as no such platform is available for the Indian political scenario. Further, we have applied RNN for classifying the tweets into either politically inclined or not. We have also  incorporated the Autoencoder technique for achieving better results. 
+\medskip\\
+
+SemEval Task 6\cite{mohammad2016semeval} is a groundbreaking work in the field of stance detection where numerous techniques are proposed based on traditional machine learning techniques and deep learning techniques like RNN, CNN, LSTM etc. While pkudblab \cite{wei2016pkudblab} and DeepStance\cite{vijayaraghavan2016deepstance} propose CNN models for stance detection in this shared task, Augenstein et al. \cite{augenstein2016stance} propose bidirectional attention model based approach. Best results come from from MITRE \cite{zarrella2016mitre} where word2vec skip gram model\cite{mikolov2013efficient} is used to create word embeddings and then those features are used to learn sentence representations via a hashtag prediction auxiliary task. Taking inspiration from MITRE\cite{zarrella2016mitre} we build an autoencoder to learn senetnce representation. \medskip\\
+Many studies after this shared task on stance detection use SemEval Data like Sun et. al\cite{sun2019stance} leverage the sentiment information of a post to improve the performance of stance detection and Dey et. al\cite{dey2018topical} who detect stance in two phases using a Long Short-Term memory (LSTM) based deep neural network for each phase, and embed attention at each of the phases. Wojatzki et. al\cite{wojatzki2016ltl} also use a two-level stacked classifier approach using Support Vector Machines (SVM). In this work, we detect stance of each tweet in two phases, the first one telling if the tweet is stance revealing or stance neutral, and in the second phase the true stance of the stance revealing tweets is determined.\medskip\\
+Daniel et. al \cite{preoctiuc2017beyond} moves beyond the 2 class labelling to 7 pt. scale labelling. They classify the tweets of the users who are asked to rate their political inclination on the Qualtrics platform and also asked to submit their twitter accounts from which, after verifying that the accounts are genuine, tweets are extracted for dataset construction. They use linguistic features like word2vec, LIWC and unigrams in their analysis. We have also incorporated this multi-labelling and used autoencoder for better results. 
+\newpage
+
+\section{DATA COLLECTION}
+\hrule
+\vspace*{5mm}
+
+\subsection{Manual Identification of Twitter Users}
+%---------------THIS SECTION IS UP TO DATE--------------
+Our aim is to collect users for political views classification using a semi supervised deep learning technique.
+We select users residing in Delhi National Capital Region (NCR) locations so as to limit the scope and area of interest of our study and build a targetted model for a particular region that can later be extrapolated to other regions and states.
+\medskip\\
+We consider three major political parties –
+\begin{enumerate}
+    \item Aam Aadmi Party (AAP)
+    \item Bharatiya Janata Party (BJP)
+    \item Indian National Congress (INC)
+\end{enumerate}
+\medskip
+\medskip
+\textbf{Details:}
+\begin{enumerate}
+    \item Start Date of data collection: 20th September 2018.    \item Frequency of data update: Daily.
+    \item Contributors: Members of the group.
+    \item Number of users: 244
+\end{enumerate}
+\textbf{Process:}
+\medskip\\
+We search for the target users by tweets which contain certain hashtags. Some hashtags that we use - \#BJP, \#AAP, \#Congress, \#Politics, \#Elections etc. This hashtag based search on Twitter gives users which are interested in politics and tweet about the same. \\
+We filter these users on the basis of location and language and set the location to only Delhi/NCR regions using the Twitter platform’s location filter capability and language to English using the Twitter platform's language filter capability.
+\medskip\\
+To understand the distribution of the sample and have equal number of users for each category we analyze the tweets of these individuals to determine which political party they support or are against and then categorize them in one of the following categories:
+\begin{enumerate}
+    \item Pro AAP: Tweets indicate that user supports Aam Aadmi Party
+    \item Pro BJP: Tweets indicate that user supports Bharatiya Janata Party
+    \item Pro Congress: Tweets indicate that user supports Indian National Congress
+    \item Anti AAP: Tweets indicate that user opposes Aam Aadmi Party
+    \item Anti BJP: Tweets indicate that user opposes Bharatiya Janata Party
+    \item Anti Congress: Tweets indicate that user opposes Indain National Congress
+    \item Undeterministic: Tweets can not determine user's political stance
+\end{enumerate}
+\begin{table}[h]
+\centering
+\caption{Distribution of users identified across political parties} 
+\begin{tabular}{|p{10cm}|p{2cm}|} 
+\hline
+ Political Party Classification & No. of People \\
+ \hline \hline
+ Undeterministic & 71 \\ 
+ \hline
+ Anti - AAP & 9 \\
+\hline
+ Anti - BJP & 16 \\
+\hline
+Anti - Congress & 9 \\
+\hline
+Pro - AAP & 57 \\
+\hline
+Pro - BJP & 42 \\
+\hline
+Anti - Congress & 40 \\
+\hline
+\end{tabular}
+\label{tab:partyDistribution}
+\end{table} 
+
+All this data is manually collected in an excel sheet along with the username of the person. We use \textit{https://tweeterid.com/} for conversion of the username to the user id for processing of data in the future. \medskip\\
+\newpage
+%--------------MAKE GRAPH IN LATEX----------------
+\begin{figure}[h]
+\includegraphics[width=\linewidth]{chart.png}
+\caption{Distribution of users identified across political parties}
+\label{fig:partyDistribution}
+\end{figure}
+The following user accounts are not incorporated:
+\begin{enumerate}
+    \item Politicians
+    \item Media and News Profiles
+    \item Residents outside Delhi NCR
+    \item Verified Profiles
+\end{enumerate}
+\newpage
+
+\subsection{Collecting Tweets From Users}
+%-----------SECTION UP TO DATE--------------
+After manually identifying users and self labelling them, we download the twitter timeline of these users. Twitter provides Twitter API to interact with their service. Twitter offers two kinds of APIs, a REST API and a streaming API. The streaming API delivers tweets based on search terms or for specific users you request, along with info about the author, in real-time. You do not need the tweet author's permission. You must log into some Twitter account to use streaming, using either basic or OAuth authentication. The REST API lets you query or modify a user's account. You don't need their permission to query their account, you do need it to modify their account. They provide permission through OAuth authentication. Since we want to collect past tweets of users and hence want access to historic data, we use the REST API.
+\medskip\\
+The Twitter API is a set of URLs that take parameters which let you access many features of Twitter, such as posting a tweet or finding tweets that contain a word etc. One such parameter is the screen\_name which is the unique Twitter username of the user. We use this parameter to extract all the tweets of all the users identified manually.  
+\medskip\\
+There are a host of Python based clients that allow us to work with this API, one of which is Tweepy which we use, due to its ease of use and simple structure. Tweepy provides the convenient Cursor interface to iterate through different types of objects - Tweets, Users, Entities and Places. Access to each returns a JSON-formatted response and traversing through information is very easy in Python. 
+\medskip\\
+Since we want the full data returned by the API and the API returns the data in the form of JSON, we store the tweets in MongoDB which is a NoSQL database as for this we won’t need to create all the columns as done in RDBMS systems. MongoDB provides a faster query response and can be clustered easily. Also, if the API changes in future, we would not have to change the structure of the database.
+\medskip\\
+We use Tweepy to collect the twitter timelines of all the users with a language filter that allows only "English Language" tweets of the user to be stored in the database. To ensure that rest API does not give truncated tweets, we take the tweet mode as extended in the Cursor function to get "full\_text" instead of "text" in the JSON. The retweets though, are still truncated in the "full\_text" and the extended version is available in "retweeted\_status" so the "full\_text" is replaced by that present in "retweeted\_status". After this we have 3,76,932 tweets with us stored in the database.
+\vspace*{5mm}
+
+\newpage
+
+\section{NATURAL LANGUAGE BASED POLITICAL FILTER}
+\hrule
+\vspace*{5mm}
+%--------------UP TO DATE---------------------
+An extremely important aspect for building efficient machine learning models is having the right data in the right format so that the algorithm can learn the subtleties of the data and predict with improved precision and accuracy.
+\medskip\\
+We are dealing with a huge amount of twitter data and not all the tweets that we have captured have a political context.
+\medskip\\
+In order to concentrate our focus only on tweets with some politic context and capture these tweets we create a natural language based political filter to extract only politically relevant tweets from the 3,76,932 tweet corpus that we have.
+\medskip\\
+Our political filter reduces these 3,76,932 tweets into 1,53,032 tweets. We are aware that this filter is not fool proof and that some out of context tweets may have crept in, but still it is efficient in reducing our data set size from 3,76,932 to 1,53,032.
+\medskip\\ 
+To create this filter we begin by creating a comprehensive dictionary of keywords that are usually used in the context of Indian Politics. A Snowball Stemmer is then used to stem these keywords to their word roots. 
+\medskip\\
+A stemmer stems the word given as input to its word root. For example, consider we have the words "environment", "environmentalist", "environmental" since all these words belong to the same word root, all of them get stemmed to the word "environ". This is increasingly useful when creating systems that don't require an exact key word matching.
+\medskip\\
+\medskip\\
+There are three types of Stemmers, Lancaster, Porter and Snowball. We are using the Snowball Stemmer as it is not a extreme Stemmer and stems to the word roots more closely as compared to the others. 
+\medskip\\
+For example, a Lancaster Stemmer will stem "nature" and "national" both to "nat". This is a very critical issue and because of this we have used the Snowball Stemmer which is comparatively mild and reduces "nature" and "national" to different word roots.
+\medskip\\
+The Snowball Stemmer is hence our choice for stemming and is used to stem words to their word roots which makes key word matching easy and efficient.
+\medskip\\
+We tokenize the tweet data and after removing all punctuation and stop words we run a similar Stemmer on these tokens. We then run a keyword matching routine that marks each tweet that had any of these politically oriented words as its contents.
+\medskip\\
+Removing of stop words and punctuation is a critical process as these provide no new and vital information and hence can be dropped so that the whole focus can be given to the word tokens.
+\medskip\\
+All further processing and annotations are done only on these marked tweets.
+\medskip\\
+Here is a list of some of those keywords : 
+\medskip\\
+(``political",``bjp", ``aap", ``inc", ``kejriwal", ``kejrival", ``modi", ``namo", ``raga", ``pm", ``hindutva", ``congressi", ``bhakt", ``aaptard", ``aapian",``politics", ``congress", ``rss", ``RahulGandhi" , ``Yogi", ``election",``gov", ``government", ``modiji", ``opposition", ``nda", ``delhi", ``upa", ``sisodia", ``political", ``public", ``state", ``jaitley", ``army",``party", ``government", ``vote", ``rights", ``ballot", ``rafale", ``corruption", ``evm", ``court", ``demonetisation", ``constitution")
+
+
+ 
+\newpage
+\section{MANUAL ANNOTATION OF TWEETS}
+\hrule
+\vspace*{5mm}
+
+We aim to build two types of classifiers, a binary classifier to classify the political tweets as "sensitive" and "not sensitive", and one multi-class classifier to classify which political party the sensitive tweet talks about. By sensitivity of a political tweet we mean whether it can be said, by just reading the tweet, that the speaker is disclosing which political party it supports or is against. This may be correlated with the fact that in near future, the speaker will vote for that party in elections, or that he/she is a hardcore supporter or criticizer of that party.
+\medskip\\
+To build these classifiers, we need to have a training sample that is already labelled, and for that we need to manually annotate this data. The annotation process should be conducted for both the classifiers together to maintain coherency and avoid bias.
+\medskip\\
+Process:
+\medskip\\
+We selected a random set of political tweets that are used for manual annotation, training and testing of the classification models. To have an equal distribution of the number of tweets of each user in the sample, we randomly select 50 political tweets from each user. If a user has less than 50 political tweets, we take all his political tweets. All the tweets are shuffled up and given to the annotator. The annotator is given access to only the "full\_text" of the tweet and no other information about the user like his name, profile link, twitter bio etc. This is done to ensure that the annotation is done by only analyzing the text of the tweet.\\
+We annotate these tweets into the following categories:
+\begin{enumerate}
+    \item Label 1: To classify a sentence as showing the political allegiance of the speaker of sentence (sensitivity):
+    \begin{itemize}
+        \item 0: not sensitive
+        \item 1: sensitive 
+    \end{itemize}
+    \item Label 2: If the value of label 1 is 1, then which political party is the speaker referring to and in what light:
+    \begin{itemize}
+        \item 1: Pro AAP
+        \item 2: Pro BJP
+        \item 3: Pro Congress
+        \item 4: Anti AAP
+        \item 5: Anti BJP
+        \item 6: Anti Congress
+    \end{itemize}
+\end{enumerate}
+
+The guidelines for annotations for Label 1 are:
+\begin{enumerate}
+    \item Only the sentence is taken into consideration for the annotation process and the annotator is not given access to any detail of the speaker.
+    \item A sentence can be annotated only if it is in English.
+    \item The links present in the sentences have to be ignored by the annotator.
+    \item Sentences addressing only AAP, Congress and/or BJP are to be annotated. If a sentence addresses any other political party besides these three, it is labelled 0. However, if a sentence has a mention of any other political party, but also consists of a mention of AAP, BJP and/or Congress, it will be annotated.
+    \item If a sentence indicates the speaker's political preference or allegiance, the sentence is marked 1.
+    \item If a sentence indicates that the speaker is against a political party, the sentence is marked 1.
+    \item If a sentence is a general statement about politics or a politician and does not reveal anything about his/her support or criticism of any party, it is marked 0.
+    \item If the speaker of a sentence supports a political figure but not the party he/she is associated with, we can not conclude that the person supports the party. Such a sentence is labelled 0.
+    \item If the speaker of a sentence criticizes a political figure but not the party he/she is associated with, we can not conclude that the is against the party. Such a sentence is labelled 0.
+    \item If the speaker praises or criticizes a government policy and does not comment about any party in his sentence, the sentence is labelled 0.
+    \item Any statement about any non political organization connected to any political party, for example RSS, is labelled 0.
+\end{enumerate}
+
+\begin{table}[!htbp]
+
+\caption{Some Examples where Label 1 is marked 1}
+\centering
+\begin{tabular}{|p{12.25cm}|p{1cm}|} 
+\hline
+ Tweets & Label \\
+ \hline \hline
+ "Why don’t you put the unedited tapes online @republic? If it was anyone with money, there’d be a defamation case against the \#FakeNews outfit. Republic TV is dumbing our nation down and causing radicalisation. I say this even though the channel is pro \#BJP. https://t.co/J73cXNfnCy" & 1 \\ 
+ \hline
+ "This happened when u elect DUMB \#OurPMissoDUMB" & 1 \\  
+\hline
+\end{tabular}
+\label{tab:lab1}
+\end{table}
+
+\begin{table}[!htbp]
+\caption{Some Examples where Label 1 is marked 0}
+\centering
+\begin{tabular}{ | p{12.25cm} | p{1cm}|} 
+\hline
+ Tweets & Label \\
+ \hline \hline
+ 
+"@TimesNow Shashi Tharoor knows his wife's murder case is closing \&amp; his role in the murder will be exposed- This is a tested evil strategy- Go make anti-Hindu, communal and anti-India comments and when he is convicted and jailed he will claim political vendetta" & 0 \\
+\hline
+ 
+ "@AmaninderZ @sprakaashbjp @DeShobhaa Politics was never clean not because of politicians, coz they are one of us.. Its their wickd thoughts" & 0 \\ 
+ \hline
+ "@thekiranbedi People like you are needed in national politics. We bank on you!" & 0 \\  
+\hline
+
+"\#Demonetisation did cause distress but was a huge one-time shock to the black money economy Alongwith \#GST (the biggest systemic reform since 1947), lasting impact on formalising economy Still not sure? Just check status of cash-based business models eg. real estate, pvt edu etc https://t.co/DYz0EmPLem" & 0 \\  
+\hline
+
+\end{tabular}
+\label{tab:lab0}
+\end{table}
+
+\newpage
+The guidelines for annotations for Label 2 are:
+\begin{enumerate}
+    \item Only statements with Label 1 as '1' are to be annotated.
+    \item The statement is given Label 2 as soon as it is given Label 1 i.e labelling of one sentence for both the categories should be done in one pass by the annotator.
+    \item If a speaker of the sentence is favouring, praising or showing support to Aam Aadmi Party (AAP) it is labelled 1. 
+    \item If a speaker of the sentence is favouring, praising or showing support to Bhartiya Janata Party (BJP) it is labelled 2.
+    \item If a speaker of the sentence is favouring, praising or showing support to Indian National Congress it is labelled 3. 
+    \item If a speaker of the sentence is criticising or trolling Aam Aadmi Party (AAP) it is labelled 4. 
+    \item If a speaker of the sentence is criticising or trolling Bhartiya Janata Party (BJP) it is labelled 5. 
+    \item If a speaker of the sentence is criticising or trolling Indian National Congress it is labelled 6. 
+    \item If a sentence fits a pro category (1,2 or 3) as well as an anti category (4,5 or 6), it is marked with the pro category label i.e either 1,2 or 3.
+    \item If a sentence fits in more than one pro category labels it is not annotated and marked 0 in Label 1.
+    \item If a sentence fits in more than one anti category and none of the pro categories, it is not annotated and marked 0 in Label 1.
+    \item If a sentence fits in more than one anti category and also in one pro category, it is given the pro label i.e 1,2 or 3.
+    \item If a sentence means that the speaker is against a party, the annotator can not infer that he/she supports the other party until and unless it is mentioned in the text of the statement and vice-versa.
+\end{enumerate}
+
+\begin{table}
+    \centering
+    \caption{Some Examples of Label 2 annotation}
+\begin{tabular}{ | p{12.25cm} | p{1cm}|} 
+\hline
+ Tweets & Label \\
+ \hline \hline
+"New DELHI GOVT. School\'s building. We need SCHOOLS not TEMPLES. We need Educated not Brainwashed Uneducated INDIA. We need Educated Honest Leaders not Uneducated Corrupted Criminals \#AAP \#AAPGoverment \#DelhiGoverment \#ArvindKejriwal \#ManishSisodia... https://t.co/jRqNnScZP5" & 1 \\ 
+ \hline
+"Save this. Frame this. Narendra Modi\'s historic \#AbkiBaarModiSarkaar win heralded on countless front pages. http://t.co/ZX9xF0gj7B" & 2 \\  
+\hline
+"\@Mnomics \@rockyindian7 \@AAPVind \@alamgirizvi \@jayambadi \@logicalindianz \@BreakiNews \@RafaleScam \@SkepticHindu \@DickDarryl \@KilaFateh \@INCIndia They don’t have any heritage any history, whatever RSS has is full of blood; hatred, so it’s very easy to make fun of someone whose entire lineage has laid down their lives for this country." & 3 \\
+
+\hline
+"\#KejriDiwas AAP ditched the people of Delhi by bringing down its Government to take the plunge in the national political arena" & 4 \\
+
+\hline
+"The \#BJP \&amp; \@IASassociation have colluded to sabotage the image the \@ArvindKejriwal/\#AAP Govt has built over the years. They have total disregard 4 democratically elected representatives. \#Modi ji, dont punish the Delhiites bcz they chose Kejriwal over u. \@attorneybharti https://t.co/3qVpYD5LQ0" & 5 \\
+
+\hline
+"\@Goldiepandey26 \@GetRidofDevils Absolutely true. Its established fact. Basic problem is that \#RahulGandhi is in illusion that he is prince of \#NehruGandhi dynasty n has birth right to rule India.His sycophants never tell him that India is under democracy and he is nothing more than comedian." & 6 \\
+\hline
+\end{tabular}
+\label{tab:lab2}
+\end{table}
+
+\newpage
+\section{DATA PRE-PROCESSING}
+\hrule
+\vspace*{5mm}
+We follow a two-step methodology based on deep learning. 
+\begin{itemize}
+    \item In \textit{first step}, the goal is to detect tweets that are stance revealing. 
+    \item In \textit{second step}, the goal is to take stance revealing tweet as input and identify the exact stance made in the tweet in terms of three political parties considered in the study. 
+\end{itemize}
+We propose to solve each step in two phases. 
+\begin{itemize}
+    \item In first phase, we aim to learn effective representations of user generated information (tweet). 
+    \item In second phase, we pass the learned feature vectors as input to conventional classification algorithms namely Random Forest (RF) , Decision Tree, Naive Bayes and SVM.
+\end{itemize}
+For effective representation learning of first phase, we employ a deep neural network based autoencoder inspired by Sutskever et al. \cite{sutskever2014sequence}. \medskip\\
+An autoencoder is an unsupervised learning algorithm, used for compressing high dimensional input data to lower dimensions in order to learn a more compact and efficient representation of the input. It then attempts to reconstruct the initial input given this intermediate representation.\medskip\\
+To ensure that the autoencoder learns and performs better tweet representations, we perform data cleaning before feeding the tweets to the autoencoder.\medskip\\
+We perform the following procedure for cleaning the data:
+\subsection{Replacing emoticons with text}
+First, using the unicode emoji list
+resource\footnote{https://unicode.org/emoji/} we replace all the emojis with their corresponding text as in the unicode emoji listing. Since, autoencoder uses text of the tweets for their representation, this replacement of the emojis with text makes the accuracy better.
+\subsection{Slang Removal}
+Mostly every tweet contains short forms or slangs which are understood by humans but are difficult for the machine to learn and understand. Therefore, we removed all the slangs and replaced them with their full form using an online dictionary which is for tweet normalization\footnote{https://www.noslang.com/dictionary}.
+\medskip\\
+The dictionary contains many political as well as common slangs used generally by people. This increases the probability of replacing most of the slangs in our tweet dataset.
+\subsection{Handling transliterated and code-mixed data}
+Most people in India use hindi as well as hinglish alongside english in their tweets. For the autoencoder to work with most efficiency it is essential that all the tweets fed into it are of the same nature or language.\medskip\\
+Since, the majority of words in the tweets are english, it would be computationally beneficial to convert all the hinglish as well as hindi words to english for uniformity as well as for improving the efficiency.
+\medskip\\
+Hence, we convert all the transliterated and code-mixed data\cite{das2014identifying} using the Google's Translate API\footnote{https://pypi.org/project/googletrans/}which is available for free to use but has a certain limit for processing the number of words each day.
+\medskip\\
+After performing all the above steps we obtain data which is mostly free of all the emoticons which have been replaced by their corresponding text. Also, the slangs present in the tweets have been replaced with their full forms so that autoencoder is able to learn better as well as perform more efficiently.\\
+Lastly, the conversion of all the hinglish as well as the hindi words present in the tweets are converted to english using the Google's Translate API so that the dataset is now uniform and contains only the english tweets which further contributes in increasing the efficiency of the Autoencoder.
+\medskip\\
+Finally, we input this dataset to the autoencoder to get intermediate data representation and further perform classification using the classification models of the tweets.
+\newpage
+
+\section{METHODOLOGY}
+\hrule
+\vspace*{5mm}
+\subsection{A RECURRENT NEURAL NETWORK BASED APPROACH}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{x.png}
+    \caption{Architecture of a LSTM unit}
+    \label{fig:my_label}
+\end{figure}
+
+
+The equations that govern the functioning of a Long Short Term Memory unit are :
+
+ \begin{equation}
+     \gamma_F^{<t>} = \sigma(W_F  [a^{<t-1>}, x^{<t>}] + b_F)
+ \end{equation}
+ \begin{equation}
+     \gamma_U^{<t>} = \sigma(W_U  [a^{<t-1>}, x^{<t>}] + b_U)
+ \end{equation}
+ \begin{equation}
+     \overline{c}^{<t>} = tanh(W_C[a^{<t-1>}, x^{<t>}] + b_C)
+ \end{equation}
+ \begin{equation}
+     c^{<t>} = \gamma_F^{<t>} * c^{t-1} + \gamma_U^{<t>} * \overline{c}^{<t>}
+ \end{equation}
+ \begin{equation}
+     \gamma_O^{<t>} = \sigma(W_O  [a^{<t-1>}, x^{<t>}] + b_O)
+ \end{equation}
+ \begin{equation}
+    a^{<t>} = \gamma_O^{<t>} * tanh(c^{<t>})
+ \end{equation}
+ 
+
+
+\[Here,  \gamma_F^{<t>}, \gamma_U^{<t>}, \gamma_O^{<t>} \]  are  the  three gates, Forget, Update and Output respectively. 
+\[c^{<t>}, a^{<t>}  \] are the cell state and activation value that is being output by the Long Short Term Memory unit, tanh is the tan hyperbolic function that outputs values in the range of [-1, 1] and sigma is the sigmoid activation function which has the range [0, 1] .
+\medskip\\
+We are dealing with a huge political corpus of 10,000 tweets from 258 users.
+We are building a first level classifier that classifies the given text input as being political orientation revealing or not. 
+\medskip\\
+A label of 1 indicates that the tweet is revealing the users political orientation and partisan allegiances and a label of 0 corresponds to a tweet that is generic to the political scenario and doesn't reveal the users' political allegiances.
+\medskip\\
+A specialized neural network, having multiple loops which gives it an edge over traditional neural networks in a manner such that they have the power to remember past events and predict output accordingly is called a Recurrent Neural Network.
+\medskip\\
+Recurrent Neural Networks are increasing being used in text classification and language modelling tasks everyday and are showing brilliant results in these fields.
+\medskip\\
+Long Short Term Memory units are a special type of Recurrent Neural Network. These Recurrent Neural Networks have the specialized ability to retain past information and give the output accordingly. It can remember relevant information for a long duration and is therefore our choice as a classifier.
+\medskip\\
+As is illustrated in the figure, we have five activation functions that are being used and there four internal layers in each LSTM unit. Each of these four layers plays a vital part in the learning and retaining aspect of the long and short term memory unit.
+\medskip\\
+There are three major gates which govern the functioning of the Recurrent Neural Network, namely Forget, Update and Output gate and as the name suggests, the Forget gate uses a binary sigmoid function and outputs either a 0 or 1 value depending on if the past information is to be remembered or not, if not the forget gates takes the values of 1 and the cell state gets updated by the value of the Update gate, otherwise, the cell state retains its past value. A new cell state and final activation is calculated using the tan hyperbolic activation function.
+\medskip\\
+The loss function which have employed is the binary cross entropy loss. It is also called the log loss and is usually used to estimate the loss of classification problems and gives as output a value in the range of [0,1].
+\medskip\\
+The binary cross entropy loss function is the following :
+\begin{equation}
+    (-c * log(p) + (1 - c) * log(1 - p))
+ \end{equation}
+\\
+where p is the associated probability and c refers to the binary class output (0 or 1).
+\medskip\\
+The Long Short Term Memory unit is taking as input an array of textual data i.e. the labelled user tweets, using keras(a python library for deep learning) we create a sequence from these tokenized words and then pads all the sequences to make them of the same length. These sequences are then getting converted into vectors such that similar and words which occur together often are closer vectors as compared to vectors of words that do not appear together.
+For example, using efficient natural language processing techniques we want that "bjp" and "namo" should be more closely linked i.e. the distance between these vectors should be less as compared to when we have words like "food" and "bjp".
+\medskip\\
+We then implement various architectures for the Long Short Term Memory unit by experimenting with different activation functions like the rectified linear unit, sigmoid, tan hyperbolic, softmax etc and then varying the number of layers and also the number of neurons per layer.
+\newpage
+\subsection{An LSTM Based Autoencoder Approach}
+An autoencoder is an unsupervised learning method which is used for compressing the high dimensional input data. It could also be used in tasks of dimensionality reduction for the same reason.
+An autoencoder attempts to reconstruct the input that was fed to it and does so by creating an intermediate representation. This intermediate representation is highly useful as it contains the concentrated, important, useful and relevant input.
+\medskip\\
+The autoencoder then attempts to reconstruct the initial input given this intermediate representation. An autoencoder can also be contextualized as a machine containing an Encoder and a Decoder. The Encoder encodes the input the input into a low dimensional space so as to extract only relevant information from the inputs.
+\medskip\\
+The decoder then decodes this internal representation to reconstruct the input again.
+Our dataset is 10k tweets, since we are dealing with textual data we first encode our words and sentences into floating point vectors so that our machine learning model is able to work.\medskip\\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{ae2.png}
+    \caption{Autoencoder}
+    \label{fig:my_label}
+\end{figure}
+We use Keras, a Deep Learning library for Python, that is simple, modular, and extensible. TensorFlow background for our Autoencoder implementation. We propose an Autoencoder model which learns input representation of our sentence tweets. We then train an Autoencoder using 8k unlabelled tweets. We then input the 2k annotated tweets to the trained Autoencoder and extract the floating point numpy array representation of my input data by getting the intermediate output of the Encoder layer.
+\medskip\\
+
+We have defined our Autoencoder as having following layers:
+\begin{itemize}
+    \item Embeddings Layer: The embeddings layer in keras, is a default layer that converts words into floating point vectors suitable for machine learning computations.
+    \item Flatten Layer: This layer flattens the array that it gets as input.
+    \item Dense Layer: A dense layer with Relu activation and 32 neurons.
+    \item Dense Layer: A dense layer with Sigmoid activation and 16 neurons.
+    \item Dense Layer: A dense layer with Sigmoid activation and 16 neurons.
+    \item Dense Layer: A dense layer with tan hyperbolic activation and 32 neurons.
+    \item Dense Layer: A dense layer with Relu activation and 88 neurons.
+\end{itemize}
+
+
+An autoencoder is an unsupervised deep learning algorithm that attempts to reconstruct the input that was fed to it and does so by creating an intermediate representation of the input. This intermediate representation is highly useful as it contains the important, useful and relevant information of the input. The autoencoder then attempts to reconstruct the initial input given this intermediate representation. The following equations govern the functioning of the autoencoder (similar to the identity function):
+\begin{equation}
+     \omega: A \to B (Encoder)
+ \end{equation}
+ \begin{equation}
+     \gamma: B \to A (Decoder)
+ \end{equation}
+
+We contextualize the autoencoder as a sequence to sequence model containing Recurrent Neural Network based Encoder and Decoder models. The Encoder is a LSTM which encodes the input into a low dimensional space so as to extract only relevant information from the inputs. The Decoder is a LSTM which decodes this internal representation to reconstruct the input again.
+\\
+We then feed these embeddings to classification algorithms like Random Forest, Decision Tree, Naive Bayes and Support Vector Machine and compare their performance on two levels i.e. classification of a tweet into stance-revealing or not and another classification model to detect the stance of the tweet.
+\newpage
+\subsection{Using Google's Pre - Trained Word Embeddings}
+
+Google Pre-trained word2vec model\cite{mikolov2013distributed} provides us an implementation for computing the vector representations of the words. The model includes word vectors for a vocabulary of around 3 million words and phrases which are trained on about 100 billion words from a Google news dataset. The length of each vector is 300 features.These features are used in many natural language processing and machine learning applications.
+\medskip\\
+The model takes as input a word and produces the corresponding 300 length vector representation. Hence, for each word in a sentence a 300 length vector is produced. Taking it forward using the averaging method to produce a similar representation for the whole sentence, all these vectors obtained are combined and averaged so as to produce a 300 length vector which represents the whole sentence.
+\medskip\\
+The model is loaded using the gensim library. Gensim is an open source python library for doing natural language processing, with a main focus on topic modelling. It automatically extracts semantic topics from documents as efficiently as possible. The algorithms in the Gensim Library such as Word2Vec\cite{mikolov2013efficient} are unsupervised in nature.
+\medskip\\
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=20cm]{GooglePre-Trained.png}
+    \caption{Google Pre-Trained Word2Vec Model}
+    \label{fig:my_label}
+\end{figure}
+\newpage
+\subsection{Using a word2vec Based Model For Word Embeddings}
+
+Word2vec\cite{mikolov2013efficient} is a group of related two-layer neural networks that takes a large corpus of text as input and produces a vector space where each word of the corpus is assigned a vector in that vector space. It maps text into a numerical form - vectors, such that the words that share common contexts in the corpus are located close to each other in the vector space and semantic and syntactic patterns can be reproduced using vector arithmetic. 
+\medskip\\
+Word2vec objective function causes words that occur in similar contexts to have similar embeddings. Semantic and syntactic patterns can be reproduced using vector arithmetic. Patterns such as “Man is to Woman as Brother is to Sister” can be generated through algebraic operations on the vector representations of these words such that the vector representation of “Brother” - ”Man” + ”Woman” produces a result which is closest to the vector representation of “Sister” in the model. Such relationships can be generated for a range of semantic relations (such as Country–Capital) as well as syntactic relations (e.g. present tense–past tense)
+\medskip\\
+We use gensim library for the loading a word2vec model which takes the input, tokenized tweets, and  gives a 100 length vector representation of each word, ignoring words with a total frequency lower than 5. These word embeddings are then used to produce sentence embeddings for the tweets using averaging method and Tf-idf indexing\cite{mikolov2013distributed}.
+\medskip\\
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=11.5cm]{word2vec.png}
+    \caption{word2vec Word Embedding Model}
+    \label{fig:my_label}
+\end{figure}
+
+% The sentence vectors are ultimately fed into classification models such as Naive Bayes, Random Forests, Decision Trees, Support Vector Classifier and Logistic Regression along with their labels using a 80/20 split for Training and Test data to determine the accuracy scores.
+\newpage
+\subsection{Using Classification Algorithms For Stance Detection}
+
+The Autoencoder produced the best results as compared to Google Pre-trained word embedding and word2vec Model. Hence, Autoencoder was used for pre-processing the data so as to produce more meaningful representation of our data which is finally fed into the classification Algorithms along with the labels for training as well as for detection of stance of the tweet.
+\medskip\\
+The classification Algorithms that we have considered are - 
+\begin{itemize}
+    \item Naive Bayes
+    \item Decision Tree
+    \item Random Forest
+    \item Support Vector Classifier
+\end{itemize}
+
+We used scikit-learn to implement the classification algorithms.
+\subsubsection{Naive Bayes}
+It is a supervised classification algorithm which is based to the Bayes Theorem. The Bayes Theorem describes the probability of occurence of an event which is based upon some prior knowledge that might be given which is related to the event for which we are calculation the probability.
+\medskip\\
+One of the main disadvantage of Naive Bayes is that it assumes conditional independence between all the pairs of the features provided we have the value of class variable.\\
+Also, It cannot learn interaction between features which also has impact on its performance.
+\medskip\\
+The naive Bayes, however, requires less training data as opposed to say other models like logistic regression as Naive Bayes converges faster as compared to such discriminative models. This is when the above assumption of conditional independence holds. Even if it does not, Naive Bayes generally produces good results as well.
+\cite{jadhav2016comparative}
+\subsubsection{Decision Tree}
+It is also a supervised learning algorithm Which has a tree like structure. In this each node inside the tree tests an attribute based on a condition then according to the outcome, the path is determined at each step for each node based on the conditions that the nodes have and the attributes. We finally reach the leaf nodes which represents the class labels i.e. finally classifying the given statement.\\
+The various paths in the tree from the root to the leaf nodes all represent classification rules.
+\medskip\\
+The Decision Tree classifiers are one of the best algorithms for classification due to their simplicity and easy visualization of a tree. Moreover, they produce high accuracy. They are also able to map the non- linear relationships, if any, quite accurately. Also, they are able to work upon both the categorical and numerical data.
+\medskip\\
+In spite of the advantages the Decision trees also have some noticeable disadvantages like overfitting which is sometimes the tree might create over-complex trees which does not generalise the data correctly.\\
+Also, the Decision trees can sometimes become a little unstable due to some variations in the data. This instability leads to generation of a tree which is completely different to what is intended.
+\cite{jadhav2016comparative}
+\cite{montillo2009random}
+\subsubsection{Random Forest}
+Random forests are the ensemble method for classification of the data. It works by constructing numerous decision trees during training i.e. when we have given the tweets as well as their labels to the classification algorithm to learn how to predict in the future. The label of the tweet is decided by the mode of the classes given.
+\medskip\\
+The main advantage of the Random Forest is that it corrects the disadvantage of overfitting which is present in Decision Trees. Also, Since it uses multiple trees it reduces the probability of using a single classifier which might not perform well which could be due to the relationship between the testing and the training data. 
+\medskip\\
+The Decision Tree is however more difficult to visualize and is more complex than Decision trees. Also, It is more memory intensive as compared to Decision Trees.
+\cite{montillo2009random}
+\subsubsection{Support Vector Classifier}
+
+SVMs are also supervised learning algorithms for classification of data. It works by assigning the new data points which are to be classified into one of the categories which are provided during the training. The data points which are represented in space by SVM for different categories are separated by clear gap which is as big as possible then the new data points are mapped into this space and predicted by the SVM to which category they belong which is based on which side of this gap they fall.
+\medskip\\
+Moreover, SVMs also perform non-linear classification in addition to the above linear classification of the data points. SVMs do this non-linear classification also known as the kernel trick by mapping the data points which are given as inputs into the feature spaces that are high dimensional in nature.
+\medskip\\
+The SVMs have high accuracy and provides both linear and non-linear classification. 
+However, They are computationally expensive and are difficult to tune as well. They are also sometimes had to interpret.\cite{jakkula2006tutorial}
+\newpage
+
+\section{RESULTS AND OBSERVATIONS}
+\hrule
+\vspace*{5mm}
+\subsection{RNN Classifier}
+The accuracy of the Long Short Term Memory unit is coming out to be 73.9\% for a data sample of ~1,200 rows.
+\begin{figure}[ht]
+\includegraphics[width=\linewidth]{x1.png}
+\caption{Accuracy vs Dataset size}
+\end{figure}
+
+\begin{figure}[!hb]
+\includegraphics[width=\linewidth]{1.png}
+\caption{Accuracy vs Testing sample size}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=\linewidth]{x3.png}
+\caption{Accuracy vs Number of epochs}
+\end{figure}
+
+
+\begin{figure}
+\includegraphics[width=\linewidth]{x4.png}
+\caption{Accuracy vs Different Activation functions}
+\end{figure}
+
+\subsection{Autoencoder without preprocessing}
+We compare the effectiveness of our deep learning model with two types traditional models which are used for word embeddings, namely word2vec and Google's Pre-trained 300 length embeddings. As we can see, the Autoencoder based model clearly outperforms the word2vec and the Google Pre-trained embedding model.
+\begin{table}[!htbp]
+\caption{Scores for all classification models after phase 1 (w/o pre-processing)}
+\centering
+\begin{tabular}{|p{5cm}|p{1.5cm}|p{4.8cm}|p{2cm}|} 
+\hline
+Model&word2vec&Google's Pretrained Embeddings&Autoencoder \\
+ \hline \hline
+Naive Bayes & 0.481  & 0.641 & 0.155 \\ 
+ \hline
+Random Forest & 0.774  & 0.759 & 0.849 \\  
+\hline
+Decision Tree & 0.643  & 0.657 & 0.799 \\
+\hline
+Logistic Regression & 0.774  & 0.766 & 0.849 \\ 
+\hline
+Support Vector Classifier & 0.774  & 0.759 & 0.849 \\
+\hline
+\end{tabular}
+\label{tab:lab1}
+\end{table}
+
+\begin{table}[!htbp]
+\caption{Scores for all classification models after phase 2 (w/o preprocessing)}
+\medskip
+\centering
+\begin{tabular}{|p{5cm}|p{4cm}|}
+\hline
+Model&Autoencoder \\
+\hline \hline
+Naive Bayes & 0.242 \\ 
+\hline
+Random Forest & 0.414\\  
+\hline
+Decision Tree &  0.390\\
+\hline
+Support Vector Classifier  & 0.414\\
+\hline
+\end{tabular}
+\label{tab:lab1}
+\end{table}
+
+\newpage
+\subsection{Autoencoder After Pre-Processing}
+
+
+\begin{table}[!htbp]
+\caption{Scores for all classification models after phase 1}
+\centering
+\begin{tabular}{|p{5cm}|p{4cm}|} 
+\hline
+Model&Autoencoder \\
+ \hline \hline
+Naive Bayes  & 0.68 \\ 
+ \hline
+Random Forest  & 0.74 \\  
+\hline
+Decision Tree & 0.6433 \\
+\hline
+Logistic Regression  & 0.74 \\ 
+\hline
+Support Vector Classifier  & 0.74 \\
+\hline
+\end{tabular}
+\label{tab:lab1}
+\end{table}
+
+\begin{table}[!htbp]
+\caption{Scores for all classification models after phase 2}
+\medskip
+\centering
+\begin{tabular}{|p{5cm}|p{4cm}|}
+\hline
+Model&Autoencoder \\
+ \hline \hline
+Naive Bayes  & 0.06 \\ 
+ \hline
+Random Forest  & 0.3727 \\  
+\hline
+Decision Tree & 0.322 \\
+\hline
+Support Vector Classifier  & 0.3681 \\
+\hline
+\end{tabular}
+\label{tab:lab1}
+\end{table}
+
+\newpage
+
+\section{CONCLUSION}
+\hrule
+\vspace*{5mm}
+
+The results show that the autoencoder gives the highest efficiency as compared to word2vec and google pre-trained word embeddings on our dataset. The autoencoder's performance can be attributed to the efficient representation of the input that it creates, it is hence able to better predict the stance from the tweet. Google's Pretrained word embeddings also prove to be a good option to serve as default embeddings as it achieves good baseline results.
+\newline\\
+We have considered the autoencoder approach as opposed to others such as sequence to sequence model as we have less data relevant for classification. The accuracy of the second stage might seem a little on the lower side which can be attributed to the fact that only 1200 tweets for 6 label classification were available.
+Also, the tweets which have shown allegiance towards two or more then two labels in the second stage have been allocated labels according to the guidelines mentioned earlier.
+\newline\\
+Our research deviates from the pre existing researches on political scenario as we have considered a tri-party system as opposed to bi-party which has been studied in prior works.
+
+\newpage 
+\section{FUTURE WORK}
+\hrule
+\vspace*{5mm}
+\begin{enumerate}
+    \item \textit{Increasing Training Data for Autoencoder: } The results are expected to improve if the annotated data is increased.
+    \item \textit{Re-sampling: } The annotations result in unequal parts of tweets in each label, for both Label 1 and Label 2. Oversampling or undersampling may change the results which needs to be analysed.
+    \item \textit{Multi-labelling: }A tweet may be showing stance for more than one party, i.e a tweet may be Pro AAP and Anti BJP at the same time. A classifier needs to be built for handling such cases.
+\end{enumerate}
+
+
+\newpage
+\section{REFERENCES}
+\hrule
+\vspace*{5mm}
+
+\bibliographystyle{IEEEtran}
+\bibliography{refer} 
+
+\iffalse
+\begin{itemize}
+  \cite{}
+\end{itemize}
+\fi
+
+
+\end{document}
